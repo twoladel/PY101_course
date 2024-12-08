@@ -1,0 +1,6 @@
+# Ignore databases
+*.db
+.DS_Store
+
+# Ignore myenv files
+myenv/
