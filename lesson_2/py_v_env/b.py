@@ -1,3 +1,4 @@
+# This file should be run once env_b is activate from the ~/.venv dir
 import sys
 import flask
 
