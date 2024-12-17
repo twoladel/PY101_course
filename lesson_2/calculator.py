@@ -11,7 +11,8 @@ num1 = int(input())
 print("What is the second number?")
 num2 = int(input())
 
-print("What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide")
+print("What operation would you like to perform?\n"
+      "1) Add 2) Subtract 3) Multiply 4) Divide")
 op = input()
 
 if op == '1':
