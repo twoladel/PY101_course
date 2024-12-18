@@ -1,27 +1,51 @@
-# Ask user for a number
-# Ask user for a second number
-# Ask user for an operation: +, -, *, /
-# Calculate result
-# Output result
-print("Welcome to calculator!")
+def prompt(message):
+    print(f'==> {message}')
 
-print("What is the first number?")
-num1 = int(input())
 
-print("What is the second number?")
-num2 = int(input())
+def invalid_number(number):
+    try:
+        int(number)
+    except ValueError:
+        return True
 
-print("What operation would you like to perform?\n"
+    return False
+
+prompt("Welcome to calculator!")
+
+prompt("What is the first number?")
+num1 = input()
+
+while invalid_number(num1):
+    prompt("Hmmm... that doesn't look like a valid number.")
+    num1 = input()
+
+prompt("What is the second number?")
+num2 = input()
+
+while invalid_number(num2):
+    prompt("Hmmm... that doesn't look like a valid number.")
+    num2 = input()
+
+prompt("What operation would you like to perform?\n"
       "1) Add 2) Subtract 3) Multiply 4) Divide")
 op = input()
 
-if op == '1':
-    output = num1 + num2
-elif op == '2':
-    output = num1 - num2
-elif op == '3':
-    output = num1 * num2
-elif op == '4':
-    output = num1 / num2
+while op not in ['1', '2', '3', '4']:
+    prompt("You must choose 1, 2, 3, or 4")
+    op = input()
 
-print(f"The result is {output}")
+# convert str to int
+num1 = int(num1)
+num2 = int(num2)
+
+match op:
+    case '1':
+        output = num1 + num2
+    case '2':
+        output = num1 - num2
+    case '3':
+        output = num1 * num2
+    case '4':
+        output = num1 / num2
+
+prompt(f"The result is {output}")
