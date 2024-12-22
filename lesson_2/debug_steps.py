@@ -19,7 +19,7 @@ def collect_grades(students):
     grades = []
     for student in students:
         name, grade = process_student(student)
-        if grade:
+        if grade != None:
             grades.append(grade)
     return grades
 
