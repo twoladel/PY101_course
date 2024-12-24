@@ -10,42 +10,49 @@ def invalid_number(number):
 
     return False
 
-prompt("Welcome to calculator!")
+while True:
 
-prompt("What is the first number?")
-num1 = input()
+    prompt("Welcome to calculator!")
 
-while invalid_number(num1):
-    prompt("Hmmm... that doesn't look like a valid number.")
+    prompt("What is the first number?")
     num1 = input()
 
-prompt("What is the second number?")
-num2 = input()
+    while invalid_number(num1):
+        prompt("Hmmm... that doesn't look like a valid number.")
+        num1 = input()
 
-while invalid_number(num2):
-    prompt("Hmmm... that doesn't look like a valid number.")
+    prompt("What is the second number?")
     num2 = input()
 
-prompt("""What operation would you like to perform?
-1) Add 2) Subtract 3) Multiply 4) Divide""")
-op = input()
+    while invalid_number(num2):
+        prompt("Hmmm... that doesn't look like a valid number.")
+        num2 = input()
 
-while op not in ['1', '2', '3', '4']:
-    prompt("You must choose 1, 2, 3, or 4")
+    prompt("""What operation would you like to perform?
+    1) Add 2) Subtract 3) Multiply 4) Divide""")
     op = input()
 
-# convert str to int
-num1 = int(num1)
-num2 = int(num2)
+    while op not in ['1', '2', '3', '4']:
+        prompt("You must choose 1, 2, 3, or 4")
+        op = input()
 
-match op:
-    case '1':
-        output = num1 + num2
-    case '2':
-        output = num1 - num2
-    case '3':
-        output = num1 * num2
-    case '4':
-        output = num1 / num2
+    # convert str to int
+    num1 = int(num1)
+    num2 = int(num2)
 
-prompt(f"The result is {output}")
+    match op:
+        case '1':
+            output = num1 + num2
+        case '2':
+            output = num1 - num2
+        case '3':
+            output = num1 * num2
+        case '4':
+            output = num1 / num2
+
+    prompt(f"The result is {output}")
+
+    prompt("Would you like to perform more calculations? Enter y or n.")
+    calc_on = input()
+    if calc_on and calc_on[0].lower() != 'y':
+        break
