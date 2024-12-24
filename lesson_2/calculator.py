@@ -1,9 +1,14 @@
 import json
 
+LANGUAGE = 'en'
+
 with open('calculator_messages.json', 'r') as file:
     MESSAGES = json.load(file)
 
-def prompt(message):
+def prompt(key, **kwargs):
+    message = MESSAGES[LANGUAGE][key]
+    if kwargs:
+        message = message.format(**kwargs)
     print(f'==> {message}')
 
 def invalid_number(number):
@@ -16,27 +21,27 @@ def invalid_number(number):
 
 while True:
 
-    prompt(MESSAGES['welcome'])
+    prompt('welcome')
 
-    prompt(MESSAGES['first_num'])
+    prompt('first_num')
     num1 = input()
 
     while invalid_number(num1):
-        prompt(MESSAGES['invalid_num'])
+        prompt('invalid_num')
         num1 = input()
 
-    prompt(MESSAGES['second_num'])
+    prompt('second_num')
     num2 = input()
 
     while invalid_number(num2):
-        prompt(MESSAGES['invalid_num'])
+        prompt('invalid_num')
         num2 = input()
 
-    prompt(MESSAGES['operation'])
+    prompt('operation')
     op = input()
 
     while op not in ['1', '2', '3', '4']:
-        prompt(MESSAGES['invalid_op'])
+        prompt('invalid_op')
         op = input()
 
     # convert str to int
@@ -53,12 +58,9 @@ while True:
         case '4':
             output = num1 / num2
 
-    result = MESSAGES['result']
-    formatted_result = result.format(output=output)
+    prompt('result', output=output)
 
-    prompt(formatted_result)
-
-    prompt(MESSAGES['continue'])
+    prompt('continue')
     calc_on = input()
     if calc_on and calc_on[0].lower() != 'y':
         break

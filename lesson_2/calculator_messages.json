@@ -1,10 +1,23 @@
-{
-    "welcome": "Welcome to calculator!",
-    "first_num": "What is the first number?",
-    "second_num": "What is the second number?",
-    "invalid_num": "Hmmm... that doesn't look like a valid number.",
-    "operation": "What operation would you like to perform?\n 1) Add 2) Subtract 3) Multiply 4) Divide",
-    "invalid_op": "You must choose 1, 2, 3, or 4",
-    "result": "The result is {output}",
-    "continue": "Would you like to perform more calculations? Enter y or n."
+{ 
+    "en": {
+        "welcome": "Welcome to calculator!",
+        "first_num": "What is the first number?",
+        "second_num": "What is the second number?",
+        "invalid_num": "Hmmm... that doesn't look like a valid number.",
+        "operation": "What operation would you like to perform?\n 1) Add 2) Subtract 3) Multiply 4) Divide",
+        "invalid_op": "You must choose 1, 2, 3, or 4",
+        "result": "The result is {output}",
+        "continue": "Would you like to perform more calculations? Enter y or n."
+    },
+
+    "es": {
+        "welcome": "¡Bienvenido a la calculadora!",
+        "first_num": "¿Cual es el primer numero?",
+        "second_num": "¿Cual es el segundo numero?",
+        "invalid_num": "Hmmm... ese no parece un número válido.",
+        "operation": "¿Qué operación te gustaría realizar?\n 1) Sumar 2) Restar 3) Multiplicar 4) Dividir",
+        "invalid_op": "Debes elegir 1, 2, 3 o 4",
+        "result": "El resultado es {output}",
+        "continue": "¿Desea realizar más cálculos? Ingrese y o n."
+    }
 }
