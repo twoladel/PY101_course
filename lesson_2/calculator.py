@@ -2,9 +2,6 @@ import json
 
 LANGUAGE = 'en'
 
-with open('calculator_messages.json', 'r') as file:
-    MESSAGES = json.load(file)
-
 def prompt(key, **kwargs):
     message = MESSAGES[LANGUAGE][key]
     if kwargs:
@@ -13,15 +10,18 @@ def prompt(key, **kwargs):
 
 def invalid_number(number):
     try:
-        int(number)
+        float(number)
     except ValueError:
         return True
 
     return False
 
-while True:
+with open('calculator_messages.json', 'r') as file:
+    MESSAGES = json.load(file)
 
-    prompt('welcome')
+prompt('welcome')
+
+while True:
 
     prompt('first_num')
     num1 = input()
@@ -44,9 +44,9 @@ while True:
         prompt('invalid_op')
         op = input()
 
-    # convert str to int
-    num1 = int(num1)
-    num2 = int(num2)
+    # convert str to float
+    num1 = float(num1)
+    num2 = float(num2)
 
     match op:
         case '1':
