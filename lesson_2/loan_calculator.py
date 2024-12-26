@@ -19,7 +19,7 @@ def invalid_number(user_input):
     try:
         num = float(user_input)
         if num < 0:
-            raise ValueError(f"Please enter a positive number: {user_input}")
+            raise ValueError
     except ValueError:
         return True
     return False
@@ -56,12 +56,12 @@ print(messages('welcome'))
 while True:
     prompt(messages('loan_total'))
     loan_total = input()
-    remove_commas(loan_total)
+    loan_total = remove_commas(loan_total)
 
     while invalid_number(loan_total):
         prompt(messages('invalid_loan'))
         loan_total = input()
-        remove_commas(loan_total)
+        loan_total = remove_commas(loan_total)
 
     prompt(messages('duration'))
     duration = input()
