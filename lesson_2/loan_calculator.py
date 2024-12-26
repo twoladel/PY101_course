@@ -24,20 +24,20 @@ def invalid_number(user_input):
         return True
     return False
 
-def calculate_loan_payment(loan_total, duration, apr):
+def calculate_loan_payment(loan_amount, loan_length, interest_rate):
     # Coerce to floats before calculations
-    loan_total = float(loan_total)
-    duration = float(duration)
-    apr = float(apr)
+    loan_amount = float(loan_amount)
+    loan_length = float(loan_length)
+    interest_rate = float(interest_rate)
 
-    duration_in_months = duration * 12
-    monthly_interest = (apr / 100) / 12
+    duration_in_months = loan_length * 12
+    monthly_interest = (interest_rate / 100) / 12
 
     if monthly_interest == 0.0:
-        monthly_payment = loan_total / duration_in_months
+        monthly_payment = loan_amount / duration_in_months
         prompt(messages('no_interest').format(monthly_payment=monthly_payment))
     else:
-        monthly_payment = loan_total * (monthly_interest /
+        monthly_payment = loan_amount * (monthly_interest /
                         (1 - (1 + monthly_interest) ** (-duration_in_months)))
 
         prompt(messages('monthly_payment').format
@@ -55,11 +55,13 @@ print(messages('welcome'))
 
 while True:
     prompt(messages('loan_total'))
-    loan_total = remove_commas(input())
+    loan_total = input()
+    remove_commas(loan_total)
 
     while invalid_number(loan_total):
         prompt(messages('invalid_loan'))
-        loan_total = remove_commas(input())
+        loan_total = input()
+        remove_commas(loan_total)
 
     prompt(messages('duration'))
     duration = input()
