@@ -10,14 +10,16 @@ def messages(key):
     return MESSAGES[key]
 
 def remove_commas(user_input):
-    # Allow commas but remove them
+    # Allow commas for loan total but remove them
     split_input = user_input.split(',')
     user_input = ''.join(split_input)
     return user_input
 
 def invalid_number(user_input):
     try:
-        float(user_input)
+        num = float(user_input)
+        if num < 0:
+            raise ValueError(f"Please enter a positive number: {user_input}")
     except ValueError:
         return True
     return False
@@ -51,17 +53,17 @@ while invalid_number(loan_total):
     loan_total = remove_commas(input())
 
 prompt(messages('duration'))
-duration = remove_commas(input())
+duration = input()
 
 while invalid_number(duration):
     prompt(messages('invalid_duration'))
-    duration = remove_commas(input())
+    duration = input()
 
 prompt(messages('apr'))
-apr = remove_commas(input())
+apr = input()
 
 while invalid_number(apr):
     prompt(messages('invalid_apr'))
-    apr = remove_commas(input())
+    apr = input()
 
 calculate_loan_payment(loan_total, duration, apr)
