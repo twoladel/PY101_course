@@ -38,7 +38,6 @@ def calculate_loan_payment(loan_total, duration, apr):
         monthly_payment = loan_total * (monthly_interest /
                         (1 - (1 + monthly_interest) ** (-duration_in_months)))
 
-        monthly_payment = round(monthly_payment, 2)
         prompt(messages('monthly_payment').format
                (monthly_payment=monthly_payment))
 
