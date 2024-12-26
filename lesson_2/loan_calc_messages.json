@@ -1,0 +1,11 @@
+{
+    "welcome": "\nWelcome to the Loan Calculator!\nWe'll calculate your monthly payment.\n",
+    "loan_total": "What is the total loan amount?",
+    "invalid_loan": "Please enter a valid number: no dollar signs.",
+    "duration": "How many years is the loan duration?",
+    "invalid_duration": "Please enter years as a number.",
+    "apr": "What is the APR (Annual Percentage Rate)?\nExample: enter 4.25 if your rate is 4.25%",
+    "invalid_apr": "Please enter APR as a number. Ex: 5.75",
+    "monthly_payment": "Your monthly payment would be: ${monthly_payment:,}",
+    "no_interest": "No interest on this loan?\nYou can divide the total by the duration in months to get your payment: ${monthly_payment:,}"
+}
