@@ -23,7 +23,7 @@ def invalid_number(user_input):
     return False
 
 def calculate_loan_payment(loan_total, duration, apr):
-    
+
     loan_total = float(loan_total)
     duration = float(duration)
     apr = float(apr)
@@ -35,11 +35,12 @@ def calculate_loan_payment(loan_total, duration, apr):
         monthly_payment = loan_total / duration_in_months
         prompt(messages('no_interest').format(monthly_payment=monthly_payment))
     else:
-        monthly_payment = loan_total * (monthly_interest / 
+        monthly_payment = loan_total * (monthly_interest /
                         (1 - (1 + monthly_interest) ** (-duration_in_months)))
 
         monthly_payment = round(monthly_payment, 2)
-        prompt(messages('monthly_payment').format(monthly_payment=monthly_payment))
+        prompt(messages('monthly_payment').format
+               (monthly_payment=monthly_payment))
 
 print(messages('welcome'))
 
