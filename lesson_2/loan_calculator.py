@@ -25,7 +25,7 @@ def invalid_number(user_input):
     return False
 
 def calculate_loan_payment(loan_total, duration, apr):
-
+    # Coerce to floats before calculations
     loan_total = float(loan_total)
     duration = float(duration)
     apr = float(apr)
@@ -43,27 +43,39 @@ def calculate_loan_payment(loan_total, duration, apr):
         prompt(messages('monthly_payment').format
                (monthly_payment=monthly_payment))
 
+def another_calculation():
+
+    prompt(messages('continue'))
+    answer = input()
+    if answer.lower()[0] == 'y':
+        return True
+    return False
+
 print(messages('welcome'))
 
-prompt(messages('loan_total'))
-loan_total = remove_commas(input())
-
-while invalid_number(loan_total):
-    prompt(messages('invalid_loan'))
+while True:
+    prompt(messages('loan_total'))
     loan_total = remove_commas(input())
 
-prompt(messages('duration'))
-duration = input()
+    while invalid_number(loan_total):
+        prompt(messages('invalid_loan'))
+        loan_total = remove_commas(input())
 
-while invalid_number(duration):
-    prompt(messages('invalid_duration'))
+    prompt(messages('duration'))
     duration = input()
 
-prompt(messages('apr'))
-apr = input()
+    while invalid_number(duration):
+        prompt(messages('invalid_duration'))
+        duration = input()
 
-while invalid_number(apr):
-    prompt(messages('invalid_apr'))
+    prompt(messages('apr'))
     apr = input()
 
-calculate_loan_payment(loan_total, duration, apr)
+    while invalid_number(apr):
+        prompt(messages('invalid_apr'))
+        apr = input()
+
+    calculate_loan_payment(loan_total, duration, apr)
+
+    if not another_calculation():
+        break
