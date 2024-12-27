@@ -33,9 +33,12 @@ while True:
     
     prompt("Would you like to play again? Enter (y/n)")
     answer = input()
-    if answer.casefold() not in ['y', 'yes', 'n', 'no']:
-        prompt("Invalid response. Please enter y or n.")
-        answer = input()
-
+    while True:
+        if answer.casefold() not in ['y', 'yes', 'n', 'no']:
+            prompt("Invalid response. Please enter y or n.")
+            answer = input()
+        else:
+            break
+        
     if answer.casefold() in ['n', 'no']:
         break
