@@ -21,14 +21,14 @@ while True:
     prompt(f"Please choose one: {', '.join(VALID_CHOICES)}")
     user_choice = input()
 
-    while user_choicechoice not in VALID_CHOICES:
+    while user_choice not in VALID_CHOICES:
         prompt("That's not a valid choice.")
-        user_choicechoice = input()
+        user_choice = input()
 
     cpu_choice = random.choice(VALID_CHOICES)
 
     prompt(f"You chose: {user_choice}, the computer chose: {cpu_choice}.")
-    # Abstract this to a determine winner function
+
     declare_winner(user_choice, cpu_choice)
     
     prompt("Would you like to play again? Enter (y/n)")
