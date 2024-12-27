@@ -6,6 +6,7 @@ def prompt(message):
     print(f"==> {message}")
 
 def declare_winner(choice, computer_choice):
+    prompt(f"You chose: {user_choice}, the computer chose: {cpu_choice}.")
     if choice == computer_choice:
         prompt("It was a tie!")
     elif ((choice == 'rock' and computer_choice == 'scissors') or
@@ -27,18 +28,15 @@ while True:
 
     cpu_choice = random.choice(VALID_CHOICES)
 
-    prompt(f"You chose: {user_choice}, the computer chose: {cpu_choice}.")
-
     declare_winner(user_choice, cpu_choice)
-    
-    prompt("Would you like to play again? Enter (y/n)")
-    answer = input()
+
     while True:
+        prompt("Would you like to play again? Enter (y/n)")
+        answer = input()
         if answer.casefold() not in ['y', 'yes', 'n', 'no']:
             prompt("Invalid response. Please enter y or n.")
-            answer = input()
         else:
             break
-        
+
     if answer.casefold() in ['n', 'no']:
         break
