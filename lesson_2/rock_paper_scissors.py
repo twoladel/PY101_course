@@ -27,8 +27,8 @@ def play_again():
 
     if answer.casefold() in ['n', 'no']:
         return False
-    else:
-        return True
+
+    return True
 
 prompt("Welcome to Rock, Paper, Scissors!\n")
 
