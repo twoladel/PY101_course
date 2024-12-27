@@ -16,9 +16,24 @@ def declare_winner(choice, computer_choice):
     else:
         prompt(f"The computer wins! {computer_choice} beats {choice}.")
 
+def play_again():
+    while True:
+        prompt("Would you like to play again? Enter (y/n)")
+        answer = input()
+        if answer.casefold() not in ['y', 'yes', 'n', 'no']:
+            prompt("Invalid response. Please enter y or n.")
+        else:
+            break
+
+    if answer.casefold() in ['n', 'no']:
+        return False
+    else:
+        return True
+
 prompt("Welcome to Rock, Paper, Scissors!\n")
 
-while True:
+response = True
+while response:
     prompt(f"Please choose one: {', '.join(VALID_CHOICES)}")
     user_choice = input()
 
@@ -30,13 +45,4 @@ while True:
 
     declare_winner(user_choice, cpu_choice)
 
-    while True:
-        prompt("Would you like to play again? Enter (y/n)")
-        answer = input()
-        if answer.casefold() not in ['y', 'yes', 'n', 'no']:
-            prompt("Invalid response. Please enter y or n.")
-        else:
-            break
-
-    if answer.casefold() in ['n', 'no']:
-        break
+    response = play_again()
