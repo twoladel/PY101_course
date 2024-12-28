@@ -34,7 +34,7 @@ def declare_winner(choice, computer_choice):
         (choice == 'spock' and computer_choice == 'rock') or
         (choice == 'lizard' and computer_choice == 'spock') or
         (choice == 'lizard' and computer_choice == 'paper')):
-        return ((f"You win! {choice} beat {computer_choice}."), 'user')
+        return ((f"You win! {choice} beats {computer_choice}."), 'user')
     else:
         return ((f"The CPU wins! {computer_choice} beats {choice}."), 'cpu')
 
@@ -45,6 +45,7 @@ def play_again():
 
     while answer.casefold() not in ['y', 'yes', 'n', 'no']:
         prompt("Invalid response. Please enter y or n.")
+        answer = input()
     if answer.casefold() in ['n', 'no']:
         return False
 
@@ -65,6 +66,7 @@ while response:
 
         message, winner = declare_winner(user_choice, cpu_choice)
         prompt(message)
+        print()
         
         if winner == 'cpu':
             cpu_wins += 1
