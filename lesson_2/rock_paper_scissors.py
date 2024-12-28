@@ -7,6 +7,18 @@ CPU_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 def prompt(message):
     print(f"==> {message}")
 
+def get_user_choice():
+    prompt("Please choose one: ")
+    for key, value in VALID_CHOICES.items():
+        print(f"Enter: {key} for {value}")
+    key = input()
+
+    while key not in VALID_CHOICES:
+        prompt("That's not a valid choice.")
+        key = input()
+
+    return key
+
 def declare_winner(choice, computer_choice):
     prompt(f"You chose: {user_choice}, the computer chose: {cpu_choice}.")
 
@@ -42,12 +54,7 @@ prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!\n")
 
 response = True
 while response:
-    prompt(f"Please choose one: {', '.join(VALID_CHOICES)}")
-    choice_key = input()
-
-    while choice_key not in VALID_CHOICES:
-        prompt("That's not a valid choice.")
-        choice_key = input()
+    choice_key = get_user_choice()
 
     user_choice = VALID_CHOICES.get(choice_key)
 
