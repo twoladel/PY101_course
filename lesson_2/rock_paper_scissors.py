@@ -1,6 +1,8 @@
 import random
 
-VALID_CHOICES = ['rock', 'paper', 'scissors', 'spock', 'lizard']
+VALID_CHOICES = {'r': 'rock', 'p': 'paper', 'sc': 'scissors', 
+                 'l': 'lizard', 'sp': 'spock'}
+CPU_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
 def prompt(message):
     print(f"==> {message}")
@@ -28,26 +30,28 @@ def play_again():
 
     prompt("Would you like to play again? Enter (y/n)")
     answer = input()
-    
+
     while answer.casefold() not in ['y', 'yes', 'n', 'no']:
-            prompt("Invalid response. Please enter y or n.")
+        prompt("Invalid response. Please enter y or n.")
     if answer.casefold() in ['n', 'no']:
         return False
 
     return True
 
-prompt("Welcome to Rock, Paper, Scissors!\n")
+prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!\n")
 
 response = True
 while response:
     prompt(f"Please choose one: {', '.join(VALID_CHOICES)}")
-    user_choice = input()
+    choice_key = input()
 
-    while user_choice not in VALID_CHOICES:
+    while choice_key not in VALID_CHOICES:
         prompt("That's not a valid choice.")
-        user_choice = input()
+        choice_key = input()
 
-    cpu_choice = random.choice(VALID_CHOICES)
+    user_choice = VALID_CHOICES.get(choice_key)
+
+    cpu_choice = random.choice(CPU_CHOICES)
 
     declare_winner(user_choice, cpu_choice)
 
