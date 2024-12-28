@@ -18,15 +18,12 @@ def declare_winner(choice, computer_choice):
         prompt(f"The computer wins! {computer_choice} beats {choice}.")
 
 def play_again():
-    while True:
-        prompt("Would you like to play again? Enter (y/n)")
-        answer = input()
 
-        if answer.casefold() not in ['y', 'yes', 'n', 'no']:
+    prompt("Would you like to play again? Enter (y/n)")
+    answer = input()
+    
+    while answer.casefold() not in ['y', 'yes', 'n', 'no']:
             prompt("Invalid response. Please enter y or n.")
-        else:
-            break
-
     if answer.casefold() in ['n', 'no']:
         return False
 
