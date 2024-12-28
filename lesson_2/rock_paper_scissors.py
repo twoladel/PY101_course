@@ -23,7 +23,7 @@ def declare_winner(choice, computer_choice):
     prompt(f"You chose: {user_choice}, the computer chose: {cpu_choice}.")
 
     if choice == computer_choice:
-        prompt("It was a tie!")
+        return (("It was a tie!"), 'tie')
     elif ((choice == 'rock' and computer_choice == 'scissors') or
         (choice == 'paper' and computer_choice == 'rock') or
         (choice == 'scissors' and computer_choice == 'paper') or
@@ -34,9 +34,9 @@ def declare_winner(choice, computer_choice):
         (choice == 'spock' and computer_choice == 'rock') or
         (choice == 'lizard' and computer_choice == 'spock') or
         (choice == 'lizard' and computer_choice == 'paper')):
-        prompt(f"You win! {choice} beat {computer_choice}.")
+        return ((f"You win! {choice} beat {computer_choice}."), 'user')
     else:
-        prompt(f"The computer wins! {computer_choice} beats {choice}.")
+        return ((f"The CPU wins! {computer_choice} beats {choice}."), 'cpu')
 
 def play_again():
 
@@ -54,12 +54,26 @@ prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!\n")
 
 response = True
 while response:
-    choice_key = get_user_choice()
+    user_wins = 0
+    cpu_wins = 0
+    while user_wins < 3 and cpu_wins < 3:
+        choice_key = get_user_choice()
 
-    user_choice = VALID_CHOICES.get(choice_key)
+        user_choice = VALID_CHOICES.get(choice_key)
 
-    cpu_choice = random.choice(CPU_CHOICES)
+        cpu_choice = random.choice(CPU_CHOICES)
 
-    declare_winner(user_choice, cpu_choice)
+        message, winner = declare_winner(user_choice, cpu_choice)
+        prompt(message)
+        
+        if winner == 'cpu':
+            cpu_wins += 1
+        elif winner == 'user':
+            user_wins += 1
+    
+    if user_wins == 3:
+        prompt("You are the Grand Winner!")
+    else:
+        prompt("You lost. The computer is the Grand Winner!")
 
     response = play_again()
