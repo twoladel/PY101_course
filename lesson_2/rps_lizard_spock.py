@@ -1,6 +1,6 @@
 import random
 
-VALID_CHOICES = {'r': 'rock', 'p': 'paper', 'sc': 'scissors', 
+VALID_CHOICES = {'r': 'rock', 'p': 'paper', 'sc': 'scissors',
                  'l': 'lizard', 'sp': 'spock'}
 CPU_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 
@@ -23,7 +23,7 @@ def declare_winner(choice, computer_choice):
     prompt(f"You chose: {user_choice}, the computer chose: {cpu_choice}.")
 
     if choice == computer_choice:
-        return (("It was a tie!"), 'tie')
+        declare, victor = ("It was a tie!"), 'tie'
     elif ((choice == 'rock' and computer_choice == 'scissors') or
         (choice == 'paper' and computer_choice == 'rock') or
         (choice == 'scissors' and computer_choice == 'paper') or
@@ -34,9 +34,13 @@ def declare_winner(choice, computer_choice):
         (choice == 'spock' and computer_choice == 'rock') or
         (choice == 'lizard' and computer_choice == 'spock') or
         (choice == 'lizard' and computer_choice == 'paper')):
-        return ((f"You win! {choice} beats {computer_choice}."), 'user')
+        declare, victor = (
+            (f"You win! {choice} beats {computer_choice}."), 'user')
     else:
-        return ((f"The CPU wins! {computer_choice} beats {choice}."), 'cpu')
+        declare, victor = (
+            (f"The CPU wins! {computer_choice} beats {choice}."), 'cpu')
+
+    return (declare, victor)
 
 def play_again():
 
@@ -64,15 +68,15 @@ while response:
 
         cpu_choice = random.choice(CPU_CHOICES)
 
-        message, winner = declare_winner(user_choice, cpu_choice)
-        prompt(message)
+        declaration, winner = declare_winner(user_choice, cpu_choice)
+        prompt(declaration)
         print()
-        
+
         if winner == 'cpu':
             cpu_wins += 1
         elif winner == 'user':
             user_wins += 1
-    
+
     if user_wins == 3:
         prompt("You are the Grand Winner!")
     else:
