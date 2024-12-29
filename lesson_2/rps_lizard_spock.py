@@ -50,10 +50,12 @@ def declare_winner(choice, computer_choice):
         declare, victor = ("It was a tie!"), 'tie'
     elif player_wins(choice, computer_choice):
         declare, victor = (
-            (f"You win! {choice} {VICTORS_VERB[(choice, computer_choice)]} {computer_choice}."), 'user')
+            (f"You win! {choice} {VICTORS_VERB[(choice, computer_choice)]}"
+             f"{computer_choice}."), 'user')
     else:
         declare, victor = (
-            (f"The CPU wins! {computer_choice} {VICTORS_VERB[(computer_choice, choice)]} {choice}."), 'cpu')
+            (f"The CPU wins! {computer_choice}"
+             f"{VICTORS_VERB[(computer_choice, choice)]} {choice}."), 'cpu')
 
     return (declare, victor)
 
