@@ -26,11 +26,15 @@ VICTORS_VERB = {
 def prompt(message):
     print(f"==> {message}")
 
-def get_user_choice():
-    prompt("Please choose one: ")
-    for key, value in VALID_CHOICES.items():
-        print(f"Enter: {key} for {value}")
-    key = input()
+def get_user_choice(wins1, wins2, tie):
+    if wins1 + wins2 + tie == 0:
+        prompt("Please choose one: ")
+        for key, value in VALID_CHOICES.items():
+            print(f"Enter: {key} for {value}")
+        key = input()
+    else:
+        prompt(f"Choose again: {', '.join(VALID_CHOICES)}")
+        key = input()
 
     while key not in VALID_CHOICES:
         prompt("That's not a valid choice.")
@@ -44,7 +48,6 @@ def player_wins(choice, computer_choice):
 
 def declare_winner(choice, computer_choice):
     prompt(f"You chose: {choice}, the computer chose: {computer_choice}.")
-    print()
 
     if choice == computer_choice:
         declare, victor = ("It was a tie!"), 'tie'
@@ -79,8 +82,9 @@ def run_game():
     while response:
         user_wins = 0
         cpu_wins = 0
+        ties = 0
         while user_wins < 3 and cpu_wins < 3:
-            choice_key = get_user_choice()
+            choice_key = get_user_choice(user_wins, cpu_wins, ties)
 
             user_choice = VALID_CHOICES.get(choice_key)
 
@@ -93,6 +97,8 @@ def run_game():
                 cpu_wins += 1
             elif winner == 'user':
                 user_wins += 1
+            else:
+                ties += 1
 
             print(f"Score==> You: {user_wins} // CPU: {cpu_wins}")
             print()
