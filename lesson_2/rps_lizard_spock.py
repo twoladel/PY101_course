@@ -50,11 +50,11 @@ def declare_winner(choice, computer_choice):
         declare, victor = ("It was a tie!"), 'tie'
     elif player_wins(choice, computer_choice):
         declare, victor = (
-            (f"You win! {choice} {VICTORS_VERB[(choice, computer_choice)]}"
+            (f"You win! {choice} {VICTORS_VERB[(choice, computer_choice)]} "
              f"{computer_choice}."), 'user')
     else:
         declare, victor = (
-            (f"The CPU wins! {computer_choice}"
+            (f"The CPU wins! {computer_choice} "
              f"{VICTORS_VERB[(computer_choice, choice)]} {choice}."), 'cpu')
 
     return (declare, victor)
@@ -72,33 +72,36 @@ def play_again():
 
     return True
 
-prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!\n")
+def run_game():
+    prompt("Welcome to Rock, Paper, Scissors, Lizard, Spock!\n")
 
-response = True
-while response:
-    user_wins = 0
-    cpu_wins = 0
-    while user_wins < 3 and cpu_wins < 3:
-        choice_key = get_user_choice()
+    response = True
+    while response:
+        user_wins = 0
+        cpu_wins = 0
+        while user_wins < 3 and cpu_wins < 3:
+            choice_key = get_user_choice()
 
-        user_choice = VALID_CHOICES.get(choice_key)
+            user_choice = VALID_CHOICES.get(choice_key)
 
-        cpu_choice = random.choice(CPU_CHOICES)
+            cpu_choice = random.choice(CPU_CHOICES)
 
-        declaration, winner = declare_winner(user_choice, cpu_choice)
-        prompt(declaration)
+            declaration, winner = declare_winner(user_choice, cpu_choice)
+            prompt(declaration)
 
-        if winner == 'cpu':
-            cpu_wins += 1
-        elif winner == 'user':
-            user_wins += 1
+            if winner == 'cpu':
+                cpu_wins += 1
+            elif winner == 'user':
+                user_wins += 1
 
-        print(f"Score==> You: {user_wins} // CPU: {cpu_wins}")
-        print()
+            print(f"Score==> You: {user_wins} // CPU: {cpu_wins}")
+            print()
 
-    if user_wins == 3:
-        prompt("You are the Grand Winner!")
-    else:
-        prompt("You lost. The computer is the Grand Winner!")
+        if user_wins == 3:
+            prompt("You are the Grand Winner!")
+        else:
+            prompt("You lost. The computer is the Grand Winner!")
 
-    response = play_again()
+        response = play_again()
+
+run_game()
