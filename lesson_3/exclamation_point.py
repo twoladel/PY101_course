@@ -15,3 +15,7 @@ def ends_w_excl(sentence):
     
 print(ends_w_excl(str1))
 print(ends_w_excl(str2))
+
+# LS solution = simpler
+print(str1.endswith('!'))
+print(str2.endswith('!'))
