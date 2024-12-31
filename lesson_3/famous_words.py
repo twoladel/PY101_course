@@ -7,3 +7,7 @@ print("Four score and" + ' ' + famous_words)
 famous_words = "seven years ago..."
 
 print(' '.join(['Four score and', famous_words]))
+
+# LS solution = interpolation
+new_famous_words = f"Four score and {famous_words}"
+print(new_famous_words)
