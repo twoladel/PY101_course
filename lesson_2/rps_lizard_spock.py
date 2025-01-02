@@ -1,4 +1,5 @@
 import random
+import os
 
 VALID_CHOICES = {'r': 'rock', 'p': 'paper', 'sc': 'scissors',
                  'l': 'lizard', 'sp': 'spock'}
@@ -85,6 +86,8 @@ def run_game():
         ties = 0
         while user_wins < 3 and cpu_wins < 3:
             choice_key = get_user_choice(user_wins, cpu_wins, ties)
+
+            os.system('clear')
 
             user_choice = VALID_CHOICES.get(choice_key)
 
