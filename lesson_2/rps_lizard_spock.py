@@ -3,7 +3,6 @@ import os
 
 VALID_CHOICES = {'r': 'rock', 'p': 'paper', 'sc': 'scissors',
                  'l': 'lizard', 'sp': 'spock'}
-CPU_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock']
 WINNING_COMBOS = {
     'rock': ['scissors', 'lizard'],
     'paper': ['rock', 'spock'],
@@ -91,7 +90,7 @@ def run_game():
 
             user_choice = VALID_CHOICES.get(choice_key)
 
-            cpu_choice = random.choice(CPU_CHOICES)
+            cpu_choice = random.choice(list(VALID_CHOICES.values()))
 
             declaration, winner = declare_winner(user_choice, cpu_choice)
             prompt(declaration)
