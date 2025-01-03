@@ -32,14 +32,14 @@ def get_user_choice(wins1, wins2, tie):
         prompt("Please choose one: ")
         for key, value in VALID_CHOICES.items():
             print(f"Enter: {key} for {value}")
-        key = input()
+        key = input().casefold()
     else:
         prompt(f"Choose again: {', '.join(VALID_CHOICES)}")
-        key = input()
+        key = input().casefold()
 
     while key not in VALID_CHOICES:
         prompt("That's not a valid choice.")
-        key = input()
+        key = input().casefold()
 
     return key
 
