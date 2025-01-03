@@ -38,15 +38,18 @@ def declare_winner(choice, computer_choice):
     prompt(f"You chose: {choice}, the computer chose: {computer_choice}.")
 
     if choice == computer_choice:
-        declare, victor = ("It was a tie!"), 'tie'
+        declare = ("It was a tie!")
+        victor = 'tie'
     elif player_wins(choice, computer_choice):
-        declare, victor = (
+        declare = (
             (f"You win! {choice} {WINNING_COMBOS[choice][computer_choice]} "
-             f"{computer_choice}."), 'user')
+             f"{computer_choice}."))
+        victor = 'user'
     else:
-        declare, victor = (
+        declare = (
             (f"The CPU wins! {computer_choice} "
-             f"{WINNING_COMBOS[computer_choice][choice]} {choice}."), 'cpu')
+             f"{WINNING_COMBOS[computer_choice][choice]} {choice}."))
+        victor = 'cpu'
 
     return (declare, victor)
 
