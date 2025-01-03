@@ -4,23 +4,11 @@ import os
 VALID_CHOICES = {'r': 'rock', 'p': 'paper', 'sc': 'scissors',
                  'l': 'lizard', 'sp': 'spock'}
 WINNING_COMBOS = {
-    'rock': ['scissors', 'lizard'],
-    'paper': ['rock', 'spock'],
-    'scissors': ['paper', 'lizard'],
-    'lizard': ['paper', 'spock'],
-    'spock': ['scissors', 'rock']
-}
-VICTORS_VERB = {
-    ('rock', 'scissors'): 'crushes',
-    ('rock', 'lizard'): 'crushes',
-    ('paper', 'rock'): 'covers',
-    ('paper', 'spock'): 'disproves',
-    ('scissors', 'paper'): 'cuts',
-    ('scissors', 'lizard'): 'decapitates',
-    ('lizard', 'paper'): 'eats',
-    ('lizard', 'spock'): 'poisons',
-    ('spock', 'rock'): 'vaporizes',
-    ('spock', 'scissors'): 'smashes'
+    'rock': {'scissors': 'crushes', 'lizard': 'crushes'},
+    'paper': {'rock': 'covers', 'spock': 'disproves'},
+    'scissors': {'paper': 'cuts', 'lizard': 'decapitates'},
+    'lizard': {'paper': 'eats', 'spock': 'poisons'},
+    'spock': {'scissors': 'smashes', 'rock': 'vaporizes'}
 }
 
 def prompt(message):
@@ -53,12 +41,12 @@ def declare_winner(choice, computer_choice):
         declare, victor = ("It was a tie!"), 'tie'
     elif player_wins(choice, computer_choice):
         declare, victor = (
-            (f"You win! {choice} {VICTORS_VERB[(choice, computer_choice)]} "
+            (f"You win! {choice} {WINNING_COMBOS[choice][computer_choice]} "
              f"{computer_choice}."), 'user')
     else:
         declare, victor = (
             (f"The CPU wins! {computer_choice} "
-             f"{VICTORS_VERB[(computer_choice, choice)]} {choice}."), 'cpu')
+             f"{WINNING_COMBOS[computer_choice][choice]} {choice}."), 'cpu')
 
     return (declare, victor)
 
